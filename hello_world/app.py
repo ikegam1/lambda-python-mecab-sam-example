@@ -23,8 +23,8 @@ def lambda_handler(event, context):
     print (neologd_tagger.parse(keyword))
     return {
         "statusCode": 200,
-        "body": json.dumps({
-            "ipadic": ipadic_tagger.parse(keyword),
-            "neologd": neologd_tagger.parse(keyword)
-        }),
+        'headers':{
+            'context-type':'text/plain'
+        },
+        "body": ipadic_tagger.parse(keyword),
     }
